@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <head>
+ 	
+ 	<style type="text/css">
+.tableBorder th {
+	border: 1px solid black;
+	border-collapse: collapse;
+	important
+	!
+}
+
+.tableBorder td {
+	padding: 5px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	important
+	!
+}
+
+.tableBorder div{
+	word-wrap: break-word;
+}
+
+label {
+	font-family: "Times New Roman", "Times, serif";
+	font-size: 14px;
+}
+
+div.vcontainer {
+	ddisplay: table-cell;
+	vertical-align: middle;
+	width: 50%
+}
+
+</style>
+	<script>
+
+		/********** Common Methods START HERE ****************/
+
+		document.addEventListener('readystatechange', event => { 
+		   
+		    // When window loaded ( external resources are loaded too- `css`,`src`, etc...) 
+		    if (event.target.readyState === "complete") {
+		       loadFormData();
+		    }
+		});
+
+		//Add all the Data load methods For List here
+		function loadFormData(){
+			loadDDOdesgnation();
+			loadFinancialYearData();
+			loadTeacherdesgnation();
+			loadScaleofPay();
+			loadPresentBasicPay();
+			loadFutureBasicPay();
+
+			//load Formdata2()
+			
+			loadPresentBasicPay2();
+			loadFutureBasicPay2();
+			loadScaleofPay2();
+			
+			loadTeacherdesgnation2();
+
+
+		}
+
+		function loadFinancialYearData(){
+			var finacialYearSelect = document.getElementById("Finacial_Year");
+			var options = ["2019", "2020", "2021", "2022", "2023","2024"];
+			populateSelectOptions(options,finacialYearSelect);
+		}
+
+
+function loadPresentBasicPay(){
+			var PresentBasicPay = document.getElementById("Present_basic_pay"); 
+			var options = ["13000","13390","13780","14170", "14600","15030","15460","15930", "16400","16870" ,"17380","17890", "18400","18950","19500","20050",
+						   "20640","21230","21820","22460","23100","23740", "24440","25140","25840", "26600", "27360", "28120","28940","29760","30580","31460", 
+						    "32340", "33220", "34170","35120", "36070","37100","38130","39160","40270", "41380", "42490","43680","44870","46060","47330","48600",
+						    "49870", "51230","52590", "53950", "55410", "56870", "58330","59890","61450","63010","64670","66330","67990","69750","71510","73270",
+						    "75150","77030", "78910", "80930", "82950","84970","87130","89290","91450","93780","96110","98440","100770", "103290","105810","108330",
+						    "110850"]; 
+			populateSelectOptions(options,PresentBasicPay);
+		}
+
+
+		function loadFutureBasicPay(){
+			var FutureBasicPay = document.getElementById("Future_basic_pay"); 
+			var options = ["13000","13390","13780","14170", "14600","15030","15460","15930", "16400","16870" ,"17380","17890", "18400","18950","19500","20050",
+						   "20640","21230","21820","22460","23100","23740", "24440","25140","25840", "26600", "27360", "28120","28940","29760","30580","31460", 
+						    "32340", "33220", "34170","35120", "36070","37100","38130","39160","40270", "41380", "42490","43680","44870","46060","47330","48600",
+						    "49870", "51230","52590", "53950", "55410", "56870", "58330","59890","61450","63010","64670","66330","67990","69750","71510","73270",
+						    "75150","77030", "78910", "80930", "82950","84970","87130","89290","91450","93780","96110","98440","100770", "103290","105810","108330",
+						    "110850"]; 
+			populateSelectOptions(options,FutureBasicPay);
+		}
+
+		function loadScaleofPay(){
+			var ScaleofPay = document.getElementById("scale_of_pay"); 
+			var options = [ "13000-40270", "13390-41380", "13780-42490", "14600-44870", "15030-46060", "15460-47330","16400-49870", "17890-53950", "18400-55410",
+							 "19500-58330", "21230-63010", "22460-66330","23100-67990", "24440-71510", "25140-73270", "26600-77030", "28940-78910", "29760-80930", 
+							 "31460-84970", "35120-87130", "37100-91450", "40270-93780", "42490-96110", "46060-98440", "49870-100770","52590-103290","56870-105810",
+							 "61450-105810", "66330-108330", "73270-108330", "80930-110850",  "87130-110850"]; 
+			populateSelectOptions(options,ScaleofPay);
+		}
+
+		function loadDDOdesgnation(){
+			var DDOdesgnation = document.getElementById("DDo_Desgnation"); 
+			var options = [ "Gazetted HeadMaster", "Gazetted HeadMistress", "Complex HeadMaster", "Complex HeadMistress", "Mandal Educational Officer", "Dy.Educational Officer","HeadMaster", "HeadMistress","District Educational Officer" ]; 
+			populateSelectOptions(options,DDOdesgnation);
+		}
+
+		function loadTeacherdesgnation(){
+			var Teacherdesgnation = document.getElementById("designation"); 
+			var options = [ "H.M,Gr-II", "S.A(Tel)", "S.A(Hin)", "S.A(Eng)", "S.A(Maths)", "S.A(Phy.Sci)","S.A(Bio.Sci)", "S.A(Social)","S.A(Phy.Edn)","S.G.T","P.E.T","L.P,Gr-II","LFL.HM","J.Asst","Office Subardinate","Record Asst." ]; 
+			populateSelectOptions(options,Teacherdesgnation);
+		}
+
+		
+		// @@@@@@@@@@@@@@@ For input list2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+function loadPresentBasicPay2(){
+			var PresentBasicPay2 = document.getElementById("Present_basic_pay2"); 
+			var options = ["13000","13390","13780","14170", "14600","15030","15460","15930", "16400","16870" ,"17380","17890", "18400","18950","19500","20050",
+						   "20640","21230","21820","22460","23100","23740", "24440","25140","25840", "26600", "27360", "28120","28940","29760","30580","31460", 
+						    "32340", "33220", "34170","35120", "36070","37100","38130","39160","40270", "41380", "42490","43680","44870","46060","47330","48600",
+						    "49870", "51230","52590", "53950", "55410", "56870", "58330","59890","61450","63010","64670","66330","67990","69750","71510","73270",
+						    "75150","77030", "78910", "80930", "82950","84970","87130","89290","91450","93780","96110","98440","100770", "103290","105810","108330",
+						    "110850"]; 
+			populateSelectOptions(options,PresentBasicPay2);
+		}
+
+
+		function loadFutureBasicPay2(){
+			var FutureBasicPay2 = document.getElementById("Future_basic_pay2"); 
+			var options = ["13000","13390","13780","14170", "14600","15030","15460","15930", "16400","16870" ,"17380","17890", "18400","18950","19500","20050",
+						   "20640","21230","21820","22460","23100","23740", "24440","25140","25840", "26600", "27360", "28120","28940","29760","30580","31460", 
+						    "32340", "33220", "34170","35120", "36070","37100","38130","39160","40270", "41380", "42490","43680","44870","46060","47330","48600",
+						    "49870", "51230","52590", "53950", "55410", "56870", "58330","59890","61450","63010","64670","66330","67990","69750","71510","73270",
+						    "75150","77030", "78910", "80930", "82950","84970","87130","89290","91450","93780","96110","98440","100770", "103290","105810","108330",
+						    "110850"]; 
+			populateSelectOptions(options,FutureBasicPay2);
+		}
+
+		function loadScaleofPay2(){
+			var ScaleofPay2 = document.getElementById("scale_of_pay2"); 
+			var options = [ "13000-40270", "13390-41380", "13780-42490", "14600-44870", "15030-46060", "15460-47330","16400-49870", "17890-53950", "18400-55410",
+							 "19500-58330", "21230-63010", "22460-66330","23100-67990", "24440-71510", "25140-73270", "26600-77030", "28940-78910", "29760-80930", 
+							 "31460-84970", "35120-87130", "37100-91450", "40270-93780", "42490-96110", "46060-98440", "49870-100770","52590-103290","56870-105810",
+							 "61450-105810", "66330-108330", "73270-108330", "80930-110850",  "87130-110850"]; 
+			populateSelectOptions(options,ScaleofPay2);
+		}
+
+		
+
+		function loadTeacherdesgnation2(){
+			var Teacherdesgnation2 = document.getElementById("designation2"); 
+			var options = [ "H.M,Gr-II", "S.A(Tel)", "S.A(Hin)", "S.A(Eng)", "S.A(Maths)", "S.A(Phy.Sci)","S.A(Bio.Sci)", "S.A(Social)","S.A(Phy.Edn)","S.G.T","P.E.T","L.P,Gr-II","LFL.HM","J.Asst","Office Subardinate","Record Asst." ]; 
+			populateSelectOptions(options,Teacherdesgnation2);
+		}
+		//This method populates select input type elements with Array Data
+		function populateSelectOptions(optionDataArray,selectObject){
+
+			for(var i = 0; i < optionDataArray.length; i++) {
+			    var opt = optionDataArray[i];
+			    var el = document.createElement("option");
+			    el.textContent = opt;
+			    el.value = opt;
+			    selectObject.appendChild(el);
+
+			}
+		}
+
+		function hidetable2()//%%%%%%%%%%% hide unhide teacher input table2 %%%%%%%%%%%%%%%%%%
+    {
+         var elem=document.getElementById("Teacher Input-2");
+         var hide = elem.style.display =="none";
+         if (hide) {
+             elem.style.display="table";
+        } 
+        else {
+           elem.style.display="none";
+        }
+    }
+//*****Functions for list items completed***
+		function fillForm(e, elem) {
+
+			var elements = document.getElementsByName(elem.id + '_div');
+			if (elements.length == 0)
+				return false;
+
+			for (i = 0; i < elements.length; i++) {
+				elements[i].innerHTML = elem.value;
+			}
+
+		}
+
+		function fillFormByElementId(elementId,elementValue) {
+
+			var elements = document.getElementsByName(elementId + '_div');
+			if (elements.length == 0)
+				return false;
+
+			for (i = 0; i < elements.length; i++) {
+				elements[i].innerHTML = elementValue;
+			}
+
+		}
+
+		function printForm() {
+
+			//console.log(document.getElementById('SCHOOL_Name').value );  
+
+			var div = document.getElementById('container');
+			console.log(div.innerHTML);
+
+			var mywindow = window.open('', 'my div', 'height=400,width=600');
+			mywindow.document.write('<html><head><title>Annual Grade Increment Proceeding</title>');
+			/*optional stylesheet*///mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+			mywindow.document.write('</head><body >');
+			mywindow.document.write(div.innerHTML);
+			mywindow.document.write('</body></html>');
+
+			mywindow.document.close(); // necessary for IE >= 10
+			mywindow.focus(); // necessary for IE >= 10
+
+			mywindow.print();
+			mywindow.close();
+
+			return true;
+		}
+		
+		function displayErrorMessage(errorMessage){
+
+			document.getElementById("validationMessageContainer") 
+                              .innerHTML = errorMessage;
+			if(isNullOrEmpty(errorMessage)){
+				document.getElementById("validationMessageContainer") .style.display = 'none';				
+			}else{
+				//display:list-item;color:red;
+				document.getElementById("validationMessageContainer") .style.display = 'list-item';
+				
+			}
+
+		}
+				
+		function isNullOrEmpty(val){
+		    return (val === undefined || val == null || val.length <= 0) ? true : false;
+		}
+		function isNotNullOrEmpty(val){
+		    return !isNullOrEmpty(val);
+		}
+
+		/********** Common Methods END HERE ****************/
+//function for Rate of increment= futurepay-present pay
+		function Rateofincrement(event,elem) {
+			var errorMessage = '';
+			var PPAY = document.getElementById('Present_basic_pay').value;
+			  
+			var FPAY = document.getElementById('Future_basic_pay').value;
+
+			
+			if(isNotNullOrEmpty(PPAY) && !isNaN(PPAY) && parseInt(FPAY) > parseInt(PPAY) ) {
+				var inc = parseInt(FPAY) - parseInt(PPAY);
+				fillFormByElementId('Rate_of_Increment',inc);
+			}
+			//Validation messages
+			if (isNotNullOrEmpty(FPAY) && parseInt(FPAY) <= parseInt(PPAY))  {
+				console.log('Error:Check Present basic pay.');
+				errorMessage = "Future Basic Pay must be greater than Present Basic Pay";      
+			} 
+
+			displayErrorMessage(errorMessage); 
+						  
+		}
+		//function for Rate of increment= futurepay-present pay
+function Rateofincrement2(event,elem) {
+			var errorMessage = '';
+			var PPAY2 = document.getElementById('Present_basic_pay2').value;
+			  
+			var FPAY2 = document.getElementById('Future_basic_pay2').value;
+
+			
+			if(isNotNullOrEmpty(PPAY2) && !isNaN(PPAY2) && parseInt(FPAY2) > parseInt(PPAY2) ) {
+				var inc2 = parseInt(FPAY2) - parseInt(PPAY2);
+				fillFormByElementId('Rate_of_Increment2',inc2);
+			}
+			//Validation messages
+			if (isNotNullOrEmpty(FPAY2) && parseInt(FPAY2) <= parseInt(PPAY2))  {
+				console.log('Error:Check Present basic pay.');
+				errorMessage = "Future Basic Pay must be greater than Present Basic Pay";      
+			} 
+
+			displayErrorMessage(errorMessage); 
+						  
+		}
+
+
+		
+	</script>
+	<script>// For Right click Disable
+      function clickIE() {
+          if (document.all) {  //document.all specific to Internet Explorer  
+              alert(message);
+              return false;
+          }
+      }
+      function clickAll(e) {
+          if (document.layers || (document.getElementById && !document.all)) {  //document.layers specific to Netscape 
+              if (e.which == 2 || e.which == 3) {
+                  alert(message);
+                  return false;
+              }
+          }
+      }
+      if (document.layers) {
+          document.captureEvents(Event.MOUSEDOWN);
+          document.onmousedown = clickAll;
+      } else {
+          document.onmouseup = clickAll;
+          document.oncontextmenu = clickIE;
+      }
+      var message = "Right click is disabled";
+      document.oncontextmenu = new Function("return false")
+
+    </script>
+    
+</head>
+
+<body >
+
+	<table>
+		<tr>
+			<td>Proceedings Form</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="containerInput"
+					style="border: 2px solid;background-color:  #d8ebf3; width: 800px; padding: 5px;">
+
+					<form name="inputForm" >
+					    <fieldset>
+						<legend Align="center" style="color:RED">DDO Details</legend>
+						<table>
+							<tr>								
+								<td width="30%">
+									<div class="vcontainer">
+									<label for="DDo_Office"style="color:BLUE">Office of the DDo  </label>
+									<input type="text" id="DDO_Office" name="DDO_Office" size="25" maxlength="25" oninput="fillForm(event,this)"></input>
+									</div></td>
+								<td width="2%">&nbsp;</td>
+								<td width="30%">
+									<div class="vcontainer">
+									<label for="School_Mandal"style="color:BLUE">Mandal </label>
+									<input type="text" id="School_Mandal" name="School_Mandal" size="25" maxlength="20" oninput="fillForm(event,this)"></input>
+									</div></td>
+								<td width="2%">&nbsp;</td>
+								<td width="30%"><div class="vcontainer">
+									<label for="DDO_name"style="color:BLUE">DDO Name: </label>
+									<input type="text" id="DDO_name" name="DDO_name" size="25" maxlength="20" oninput="fillForm(event,this)"></input>
+									</div></td>
+							</tr>
+							<tr>
+								
+								<td width="30%"><div class="vcontainer">
+									<label for="DDo_Qualification"style="color:BLUE">DDo Qualification </label>
+									<input type="text" id="DDo_Qualification" name="DDo_Qualification" size="25" maxlength="15" oninput="fillForm(event,this)"></input></div>
+									</td>
+								<td width="2%">&nbsp;</td>
+								<td width="30%"><div class="vcontainer">
+										<label for="DDo_Desgnation"style="color:BLUE">DDo Designation </label>
+										<select name="DDo_Desgnation" id="DDo_Desgnation" oninput="fillForm(event,this)">
+										<option value="" selected disabled hidden>Choose designation</option></select>
+										</div></td>
+								<td width="2%">&nbsp;</td>
+								<td width="30%"><div class="vcontainer">
+									<label for="Finacial_Year"style="color:BLUE"> Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+									<select  name="Finacial_Year" id="Finacial_Year" oninput="fillForm(event,this)"> 
+									<option value="" selected disabled hidden>Choose  year</option></select>
+									</div></tr>
+
+							<tr>(*Use single space between words)</tr>
+						</table>
+						</fieldset>
+					
+						<fieldset> 
+						<legend Align="center"style="color:RED">Teacher Details-1</legend>
+						<table>
+							<tr>
+								
+								<td width="25%">
+									<div class="vcontainer">
+									<label for="teacher_Name"style="color:BLUE">Teacher Name </label>
+									<input type="text" id="teacher_Name" name="teacher_Name" size="25" maxlength="20" oninput="fillForm(event,this)"></input>
+									</div></td>
+								
+								<td width="25%">
+									<label for="School_Name"style="color:BLUE">Place of working&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+									<input type="text" id="School_Name" name="School_Name" size="25" maxlength="25" oninput="fillForm(event,this)"></input>
+									</div></td>
+								
+								<td width="25%"><div class="vcontainer">
+									<label for="designation"style="color:BLUE">Designation </label>
+									<select name="designation" id="designation" onchange="fillForm(event,this)">
+									<option value="" selected disabled hidden>Choose designation</option></select>
+									</div></td>
+								<td width="25%"><div class="vcontainer">
+									<label for="scale_of_pay"style="color:BLUE">Scale Of Pay</label>
+									<select name="scale_of_pay" id="scale_of_pay" onchange="fillForm(event,this)">
+									<option value="" selected disabled hidden>Choose Pay Scale</option></select>
+									</div></td>	
+							</tr>
+							<tr>
+							
+								<td width="25%"><div class="vcontainer">
+									<label for="Present basic_pay"style="color:BLUE">Present Basic Pay </label>
+									<select name="Present_basic_pay" id="Present_basic_pay" onchange="Rateofincrement(event,this)" oninput="fillForm(event,this)" >
+								    <option value="" selected disabled hidden>Choose Basic Pay</option></select>
+									</div></td>
+																
+								<td width="25%"><div class="vcontainer" >
+									<label for="Future_basic_pay"style="color:BLUE">Future Basic Pay</label>
+									<select name="Future_basic_pay" id="Future_basic_pay" onchange="Rateofincrement(event,this)" oninput="fillForm(event,this)">
+									<option value="" selected disabled hidden>Choose Basic Pay</option></select>
+									</div></td>
+																	
+								<td width="25%"><div class="vcontainer">
+									<label for="surrender_leave_period"style="color:BLUE"> Present pay drawn FROM </label>
+ 									<input width="10%" type="date" id="Present_pay_drawn_from" name="Present_pay_drawn_from" min="2018-01-01" max="2030-12-31"oninput="fillForm(event,this)"></div></td>
+
+								<td width="25%"><div class="vcontainer">										
+ 									<label for="surrender_leave_period"style="color:BLUE"> Due date of Increment </label>
+ 									<input type="date" id="Due_date_of_Increment" name="Due_date_of_Increment" min="2018-01-01" max="2030-12-31" oninput="fillForm(event,this)">
+									 <label for="surrender_leave_period"style="color:BLUE"></label>
+									</div></td>
+							</tr>					
+							<tr>							
+								<td width="25%"><div id="validationMessageContainer" style="display:none;color:red;" ></div></td>				
+								<td width="25%" ></td>										
+								<td width="25%"></td>
+								<td width="25%"></td>						
+							</tr>
+						</table>
+						</fieldset>
+						<table>
+							<tr>
+								
+								<td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:green" href="https://forms.gle/oZugqHbyQj9Qa3cP9"target="_blank">**Your Suggetions**</a></td>
+								<td width="2%">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Reset" style="background-color:red;color:yellow;width:50px;height:30px;";></input></td>
+								<td width="2%">&nbsp;</td>
+								<td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:#cc00cc" href="https://drive.google.com/file/d/1acO0BgyIw4njQ9JiGr9HafhUqJtlzUyB/view?usp=sharing"target="_blank">**View pay Scales**</a></td>
+							</tr>
+							
+						</table>
+
+						<fieldset> 
+						<legend Align="center"style="color:RED">Teacher Details-2</legend>
+						<table id="Teacher Input-2"style="display:none">
+							<tr>
+								
+								<td width="25%">
+									<div class="vcontainer">
+									<label for="teacher_Name"style="color:BLUE">Teacher Name </label>
+									<input type="text" id="teacher_Name2" name="teacher_Name2" size="25" maxlength="20" oninput="fillForm(event,this)"></input>
+									</div></td>
+								
+								<td width="25%">
+									<label for="School_Name"style="color:BLUE">Place of working&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+									<input type="text" id="School_Name2" name="School_Name2" size="25" maxlength="25" oninput="fillForm(event,this)"></input>
+									</div></td>
+								
+								<td width="25%"><div class="vcontainer">
+									<label for="designation"style="color:BLUE">Designation </label>
+									<select name="designation2" id="designation2" onchange="fillForm(event,this)">
+									<option value="" selected disabled hidden>Choose designation</option></select>
+									</div></td>
+								<td width="25%"><div class="vcontainer">
+									<label for="scale_of_pay"style="color:BLUE">Scale Of Pay</label>
+									<select name="scale_of_pay2" id="scale_of_pay2" onchange="fillForm(event,this)">
+									<option value="" selected disabled hidden>Choose Pay Scale</option></select>
+									</div></td>	
+							</tr>
+							<tr>
+							
+								<td width="25%"><div class="vcontainer">
+									<label for="Present basic_pay"style="color:BLUE">Present Basic Pay </label>
+									<select name="Present_basic_pay2" id="Present_basic_pay2" onchange="Rateofincrement2(event,this)" oninput="fillForm(event,this)" >
+								    <option value="" selected disabled hidden>Choose Basic Pay</option></select>
+									</div></td>
+																
+								<td width="25%"><div class="vcontainer" >
+									<label for="Future_basic_pay"style="color:BLUE">Future Basic Pay</label>
+									<select name="Future_basic_pay2" id="Future_basic_pay2" onchange="Rateofincrement2(event,this)" oninput="fillForm(event,this)">
+									<option value="" selected disabled hidden>Choose Basic Pay</option></select>
+									</div></td>
+																	
+								<td width="25%"><div class="vcontainer">
+									<label for="surrender_leave_period"style="color:BLUE"> Present pay drawn FROM </label>
+ 									<input width="10%" type="date" id="Present_pay_drawn_from2" name="Present_pay_drawn_from2" min="2018-01-01" max="2030-12-31"oninput="fillForm(event,this)"></div></td>
+
+								<td width="25%"><div class="vcontainer">										
+ 									<label for="surrender_leave_period"style="color:BLUE"> Due date of Increment </label>
+ 									<input type="date" id="Due_date_of_Increment2" name="Due_date_of_Increment2" min="2018-01-01" max="2030-12-31" oninput="fillForm(event,this)">
+									 <label for="surrender_leave_period"style="color:BLUE"></label>
+									</div></td>
+							</tr>					
+							<tr>							
+								<td width="25%"></td>				
+								<td width="25%" ></td>										
+								<td width="25%"></td>
+								<td width="25%"></td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="reset" value="ADD / Remove Teacher" onclick="hidetable2();"style="background-color:green;color:white;width:150px;height:30px;";></input>						
+							</tr>
+						</table>
+						</fieldset>
+						
+ 
+					</form>
+				</div>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="container" style="border: 2px solid; width: 800px; padding: 5px;">
+					
+					<form name="previewForm">
+					
+						<h3 Align=center>PROCEEDINGS OF THE:<div name="DDo_Desgnation_div" id="DDo_Desgnation_div_1" style="display:inline;font-weight: bold;"></div>, <div name="DDO_Office_div" id="DDO_Office_div_1" style="display:inline;font-weight: bold;"></div></h3>.
+						&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;Mandal: <div name="School_Mandal_div" id="School_Mandal_div_1" style="display:inline;font-weight: bold;"></div></br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;Present:<div name="DDO_name_div" id="DDO_name_div_1" style="display:inline;font-weight: bold;"></div>,<div name="DDo_Qualification_div" id="DDo_Qualification_div_1" style="display:inline;font-weight: bold;"></div>. </br><br>
+						 &emsp;&emsp;<b>Pro.Rc.No:</b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Date:</b><br>
+					<br> &emsp; &emsp; <b>Sub:</b> :&emsp; Edn- Sanction of Annual grade increment during the Year <div name="Finacial_Year_div" id="Finacial_Year_div_1" style="display:inline;font-weight: bold;"></div> <br/>
+						&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; of certain Teaching & NonTeaching Staff  working under this office -  Orders  - Issued </br><br>
+					
+						&emsp; &emsp; <b>Ref:</b>&emsp;1)G.O.MS NO.133 Fin & Plg Dept , Dated: 13.051974</br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;2) G.O.MS NO.192 Fin & Plg Dept, Dated: 01.08.1974 </br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;3)G.O.MS NO.40,Education Dept,Dated:07.05.2002</br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;4) Application of the  individual  </p>
+
+						<p><b>&emsp; &emsp;ORDER:</b></p>
+						
+						<br>&emsp;&emsp;As per the provisions contained in the reference cited ,the <div name="DDo_Desgnation_div" id="DDo_Desgnation_div_1" style="display:inline;font-weight: bold;"></div>, <div name="DDO_Office_div" id="DDO_Office_div_1" style="display:inline;font-weight: bold;"></div> , Mandal: <div name="School_Mandal_div" id="School_Mandal_div_1" style="display:inline;font-weight: bold;"></div> is pleased to sanction the periodical increments during the year <div name="Finacial_Year_div" id="Finacial_Year_div_1" style="display:inline;font-weight: bold;"></div> to the staff working at   as noted against  names  in the Annexure with monetary benefit from 1st of the month in which periodical increment fell due, After verfication of the Service Register of the individual it is found that they have not availed any EOL during the incremental period.</br>
+												
+						<table id="annexureTableId" class="tableBorder"  rules="all"style="width:100%; border: 1px solid black;border-collapse: collapse;">
+							<caption>Annexure</caption>
+							  <tr>
+							  
+							    <th >Name of the Teacher</th>
+							    <th >Desg</th>
+							    <th >working school</th>
+								<th >Scale of pay</th>
+								<th > present pay drawn from yy/mm/dd</th>								
+								<th >Due date of Increment yy/mm/dd</th>
+								<th >Present Basic Pay</th>
+								<th >Future Pay </th>
+								<th >Rate of Incre ment</th>								
+							  </tr>
+							  
+						        <tr>							  	
+							    <td><div name="teacher_Name_div" id="teacher_Name_div_1" style="display:inline;font-weight: bold;"></div></td>
+							    <td><div name="designation_div" id="designation_div_1" style="display:inline;font-size : 12px;"></div></td>
+								<td><div name="School_Name_div" id="School_Name_div_2" style="display:inline;font-size : 13px;"></div></td>
+								<td><div name="scale_of_pay_div" id="scale_of_pay_1" style="display:inline;font-size : 13px;"></div></td>
+								<td><div name="Present_pay_drawn_from_div" id="Present_pay_drawn_from_1" style="display:inline;"></div></td>
+								<td><div name="Due_date_of_Increment_div" id="Due_date_of_Increment_1" style="display:inline;"></div></td>
+								<td><div name="Present_basic_pay_div" id="Present_basic_pay" style="display:inline;"></div></td>
+								<td> <div name="Future_basic_pay_div" id="Future_basic_pay" style="display:inline;font-weight: bold;"></div></td>
+								<td><div name="Rate_of_Increment_div" id="Rate_of_Increment_div_1"style="display:inline;"></div></td>
+								</tr>
+
+								 <tr>							  	
+							    <td><div name="teacher_Name2_div" id="teacher_Name2_div_1" style="display:inline;font-weight: bold;"></div></td>
+							    <td><div name="designation2_div" id="designation2_div_1" style="display:inline;font-size : 12px;"></div></td>
+								<td><div name="School_Name2_div" id="School_Name2_div_2" style="display:inline;font-size : 13px;"></div></td>
+								<td><div name="scale_of_pay2_div" id="scale_of_pay2_1" style="display:inline;font-size : 13px;"></div></td>
+								<td><div name="Present_pay_drawn_from2_div" id="Present_pay_drawn_from2_1" style="display:inline ;"></div></td>
+								<td><div name="Due_date_of_Increment2_div" id="Due_date_of_Increment2_1" style="display:inline ;"></div></td>
+								<td><div name="Present_basic_pay2_div" id="Present_basic2_pay" style="display:inline ;"></div></td>
+								<td> <div name="Future_basic_pay2_div" id="Future_basic2_pay" style="display:inline ;font-weight: bold;"></div></td>
+								<td><div name="Rate_of_Increment2_div" id="Rate_of_Increment2_div_1"style="display:inline ;"></div></td>
+								</tr>
+
+								
+					  
+						</table>						
+
+						<p>&emsp;&emsp;The above entries are made in the concern service register under proper attestation.</p><br>					
+						 <h4 Align=RIGHT>Signature of the DDO &emsp;&emsp; &emsp;&emsp;&emsp;</h4> 
+							<br>Copy to:</br> 
+							1)The individual concerned </br> 
+							2)Copy to the STO  </br>
+							3)Copy to the DEO </br>
+						
+						<p Align="center"style="color:#a6a6a6">www.examhalls.in</p>
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table>
+							<tr>
+								<td width="20%"></td>
+								<td width="25%"></td>
+								<td width="10%"></td>
+								<td width="25%"></td>
+								<td width="20%"></td>
+							</tr>
+							<tr>
+								<td width="20%"></td>
+								<td width="40%"></td>
+								<td width="10%"> <input type="button" value="PRINT" style="background-color:red;color:yellow;width:50px;
+height:30px;"; onclick="printForm();" />
+								<td width="25%"></td>
+								<td width="20%"></td>
+							</tr>
+						</table>
+
+   
+
+<body/>
+</html>
