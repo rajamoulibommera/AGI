@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+ <head>
+ 	<style type="text/css">
+.tableBorder th {
+	border: 1px solid black;
+	border-collapse: collapse;
+	important
+	!
+}
+
+.tableBorder td {
+	padding: 5px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	important
+	!
+}
+
+.tableBorder div{
+	word-wrap: break-word;
+}
+
+label {
+	font-family: "Times New Roman", "Times, serif";
+	font-size: 14px;
+}
+
+div.vcontainer {
+	ddisplay: table-cell;
+	vertical-align: middle;
+	width: 50%
+}
+</style>
+	<script>
+		function fillForm(e, elem) {
+
+			if (!document.getElementById(elem.id).checkValidity()) {
+
+			}
+			if (!document.getElementById(elem.id).checkValidity()) { 
+                displayErrorMessage(document.getElementById(elem.id).validationMessage) 
+            }
+
+			var elements = document.getElementsByName(elem.id + '_div');
+			if (elements.length == 0)
+				return false;
+
+			for (i = 0; i < elements.length; i++) {
+				elements[i].innerHTML = elem.value;
+			}
+
+		}
+
+		function fillFormByElementId(elementId,elementValue) {
+
+			var elements = document.getElementsByName(elementId + '_div');
+			if (elements.length == 0)
+				return false;
+
+			for (i = 0; i < elements.length; i++) {
+				elements[i].innerHTML = elementValue;
+			}
+
+		}
+
+		function printForm() {
+
+			//console.log(document.getElementById('SCHOOL_Name').value );  
+
+			var div = document.getElementById('container');
+			console.log(div.innerHTML);
+
+			var mywindow = window.open('', 'my div', 'height=800,width=800');
+			mywindow.document.write('<html><head><title>AAS (6/12/18/24) Scale Proceeding</title>');
+			/*optional stylesheet*///mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+			mywindow.document.write('</head><body >');
+			mywindow.document.write(div.innerHTML);
+			mywindow.document.write('</body></html>');
+
+			mywindow.document.close(); // necessary for IE >= 10
+			mywindow.focus(); // necessary for IE >= 10
+
+			mywindow.print();
+			mywindow.close();
+
+			return true;
+		}
+
+		
+       function PrintPreview() {
+ 		var toPrint = document.getElementById('container');
+        var popupWin = window.open('', '_blank', 'width=800px,height=800px,location=no,left=200px');
+        popupWin.document.open();
+        popupWin.document.write('<html><title>::Print Preview::</title><link rel="stylesheet" type="text/css" href="Print.css" media="screen"/></head><body">')
+        popupWin.document.write(toPrint.innerHTML);
+        popupWin.document.write('</html>');
+        popupWin.document.close();
+
+    }
+
+	// dynamic select list##########################  
+		
+	function populate(s1,s2){
+	var s1 = document.getElementById(s1);
+	var s2 = document.getElementById(s2);
+	s2.innerHTML = "";
+	if(s1.value == "H.M,Gr-II"){
+		var optionArray = ["|","Special Grade(6Yrs)(37100-91450)|Special Grade(6Yrs)(37100-91450)","SPP-IA(12Yrs)(40270-93780)|SPP-IA(12Yrs)(40270-93780)","SPP-IB(18Yrs)(40270-93780) |SPP-IB(18Yrs)(40270-93780) ","SPP II(24Yrs)(46060-98440)|SPP II(24Yrs)(46060-98440)"];
+	} else if(s1.value == "S.A(Tel)"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	} else if(s1.value == "S.A(Hin)"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}else if(s1.value == "S.A(Eng)"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}else if(s1.value == "S.A(Maths)"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}else if(s1.value == "S.A(Phy.Sci)"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}else if(s1.value == "S.A(Bio.Sci)"){
+		var optionArray =["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}else if(s1.value == "S.A(Social)"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}else if(s1.value == "S.A(Phy.Edn)"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}else if(s1.value == "S.G.T"){
+		var optionArray = ["|","Special Grade(6Yrs)(22460-66330) |Special Grade(6Yrs)(22460-66330) ","SPP-IA(12Yrs)(28940-78910)|SPP-IA(12Yrs)(28940-78910)","SPP-IB(18Yrs)(28940-78910) |SPP-IB(18Yrs)(28940-78910) ","SPP II(24Yrs)(35120-87130) |SPP II(24Yrs)(35120-87130) "];
+	}else if(s1.value == "L.P,Gr-II"){
+		var optionArray = ["|","Special Grade(6Yrs)(22460-66330) |Special Grade(6Yrs)(22460-66330) ","SPP-IA(12Yrs)(28940-78910)|SPP-IA(12Yrs)(28940-78910)","SPP-IB(18Yrs)(28940-78910) |SPP-IB(18Yrs)(28940-78910) ","SPP II(24Yrs)(35120-87130) |SPP II(24Yrs)(35120-87130) "];
+	}else if(s1.value == "P.E.T"){
+		var optionArray =["|","Special Grade(6Yrs)(22460-66330) |Special Grade(6Yrs)(22460-66330) ","SPP-IA(12Yrs)(28940-78910)|SPP-IA(12Yrs)(28940-78910)","SPP-IB(18Yrs)(28940-78910) |SPP-IB(18Yrs)(28940-78910) ","SPP II(24Yrs)(35120-87130) |SPP II(24Yrs)(35120-87130) "];
+	}else if(s1.value == "J.Asst"){
+		var optionArray = ["|","|","|","|"];
+	}else if(s1.value == "Office Subardinate"){
+		var optionArray = ["|","Special Grade(6Yrs)(13390-41380)|Special Grade(6Yrs)(13390-41380)","SPP-IA(12Yrs)(14600-44870) |SPP-IA(12Yrs)(14600-44870) ","SPP-IB(18Yrs)(14600-44870) |SPP-IB(18Yrs)(14600-44870) ","SPP II(24Yrs)(15030-46060) |SPP II(24Yrs)(15030-46060) "];
+	}else if(s1.value == "Record Asst."){
+		var optionArray = ["|","Special Grade(6Yrs)(15460-47330)|Special Grade(6Yrs)(15460-47330) ","SPP-IA(12Yrs)(16400-49870)|SPP-IA(12Yrs)(16400-49870) ","SPP-IB(18Yrs)(16400-49870) |SPP-IB(18Yrs)(16400-49870) ","SPP II(24Yrs)-Un-Qualifed(17890-53950) |SPP II(24Yrs)-Un-Qualifed(17890-53950)","SPP II(24Yrs)-Un-Qualifed(17890-53950)|SPP II(24Yrs)-Un-Qualifed(17890-53950)"];
+	}else if(s1.value == "LFL.HM"){
+		var optionArray = ["|","Special Grade(6Yrs)(29760-80930) |Special Grade(6Yrs)(29760-80930) ","SPP-IA(12Yrs)(35120-87130) |SPP-IA(12Yrs)(35120-87130) ","SPP-IB(18Yrs)(35120-87130)|SPP-IB(18Yrs)(35120-87130)","SPP II(24Yrs)(40270-93780)|SPP II(24Yrs)(40270-93780)",];
+	}
+	for(var option in optionArray){
+		var pair = optionArray[option].split("|");
+		var newOption = document.createElement("option");
+		newOption.value = pair[0];
+		newOption.innerHTML = pair[1];		
+		s2.options.add(newOption);
+	}
+}
+// promotion date start from @@@@@@@@@@@@@@
+
+
+
+
+// promotion End date @@@@@@@@@@@@@@@@@@@		
+		function promotionDate(event,elem){
+
+			var errorMessage = '';
+			var dojInPresentCadre = document.getElementById('DOJ_in_present_cadre').value;
+			var promotionPreriodYears = document.getElementById('Promotion_Period').value;
+			var eolOrSuspensionDays = document.getElementById('EOL').value;
+
+			//Validation
+			if(isNullOrEmpty(promotionPreriodYears) || isNullOrEmpty(dojInPresentCadre)){
+				errorMessage = "Please Enter valid Promotion Period and DOJ in Present Cadre.";
+				displayErrorMessage(errorMessage);
+				return;
+			}else{
+				errorMessage = "";
+				displayErrorMessage(errorMessage);
+			}
+
+			//Calculate promotion Start and End Dates
+			var promotionEndDate = new Date(dojInPresentCadre);								
+			//Add Promotion period
+			promotionEndDate.addYears(promotionPreriodYears);
+			//Add EOL or SuspensionDays
+			if(isNotNullOrEmpty(eolOrSuspensionDays)){
+				promotionEndDate.addDays(eolOrSuspensionDays);
+			}				
+			console.log('promotionEndDate:'+promotionEndDate);
+			fillFormByElementId('Promotion_date',formatDateDDMMYYYY(promotionEndDate));
+			
+			var promotionStartDate = promotionEndDate;				
+			//promotionStartDay = promotionEndDate + 1
+			promotionStartDate.addDays(1);
+			fillFormByElementId('Promotion_start_date',formatDateDDMMYYYY(promotionStartDate));
+			
+		}
+
+		
+		/*function preview(){
+			//container
+			document.getElementById("container") .style.visibility = 'visible';
+		}*/
+
+		//Utility methods
+		Date.prototype.addDays = function(days) {
+		    this.setDate(this.getDate() + parseInt(days));
+		    return this;
+		};
+
+		Date.prototype.minusDays = function(days) {
+		    this.setDate(this.getDate() - parseInt(days));
+		    return this;
+		};
+
+		Date.prototype.addYears = function(years) {
+		    this.setFullYear(this.getFullYear() + parseInt(years));
+		    return this
+		};
+
+		function formatDateDDMMYYYY(dateObj){
+			var dd = dateObj.getDate();
+			var mm = dateObj.getMonth() + 1;
+			var y = dateObj.getFullYear();
+
+			return dd + '-'+ mm + '-'+ y;
+		}
+
+		
+		
+		//Validation code starts here
+
+		function displayErrorMessage(errorMessage){
+
+			document.getElementById("validationMessageContainer") 
+                              .innerHTML = errorMessage;
+			if(isNullOrEmpty(errorMessage)){
+				document.getElementById("validationMessageContainer") .style.display = 'none';				
+			}else{
+				//display:list-item;color:red;
+				document.getElementById("validationMessageContainer") .style.display = 'list-item';
+				
+			}
+
+		}
+		
+
+		//Common methods
+		function isNullOrEmpty(val){
+		    return (val === undefined || val == null || val.length <= 0) ? true : false;
+		}
+		function isNotNullOrEmpty(val){
+		    return !isNullOrEmpty(val);
+		}
+	</script>
+	<script>// For Right click Disable
+      function clickIE() {
+          if (document.all) {  //document.all specific to Internet Explorer  
+              alert(message);
+              return false;
+          }
+      }
+      function clickAll(e) {
+          if (document.layers || (document.getElementById && !document.all)) {  //document.layers specific to Netscape
+              if (e.which == 2 || e.which == 3) {
+                  alert(message);
+                  return false;
+              }
+          }
+      }
+      if (document.layers) {
+          document.captureEvents(Event.MOUSEDOWN);
+          document.onmousedown = clickAll;
+      } else {
+          document.onmouseup = clickAll;
+          document.oncontextmenu = clickIE;
+      }
+      var message = "Right click is disabled";
+      document.oncontextmenu = new Function("return false")
+
+    </script>
+</head>
+
+<body>
+
+	<table>
+		<tr>
+			<td>Proceeding Form</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="containerInput"
+					style="border: 2px solid;background-color:  #d8ebf3; width: 800px; padding: 5px;">
+
+					<form name="inputForm">
+					    <fieldset>
+						<legend Align="center" style="color:RED">DDO Details</legend>
+						<table>
+							<tr>
+								
+								<td width="33%">
+									<div class="vcontainer">
+										<label for="School_Name"style="color:BLUE">Office of the DDO </label>
+										<input type="text" id="DDO_Office" name="DDO_Office" size="25" maxlength="25" oninput="fillForm(event,this)"></input>
+										</div></td>
+								
+								<td width="33%">
+									<div class="vcontainer">
+										<label for="School_Mandal"style="color:BLUE">Mandal </label>
+										<input type="text" id="School_Mandal" name="School_Mandal" size="25" maxlength="20" oninput="fillForm(event,this)"></input>
+										</div></td>
+								
+								<td width="33%"><div class="vcontainer">
+										<label for="DDO_name"style="color:BLUE">DDO Name: </label>
+										<input type="text" id="DDO_name" name="DDO_name" size="25" maxlength="20" oninput="fillForm(event,this)"></input>
+										</div></td>
+							</tr>
+							<tr>
+							
+								<td  width="33%"><div class="vcontainer">
+										<label for="DDo_Qualification"style="color:BLUE">DDo Qualification </label>
+										<select name="Acadamic_Qualification1" id="Acadamic_Qualification1" style="width:200px" onchange="fillForm(event,this)">
+										<option value="" selected disabled hidden>Acadamic</option>
+										<option value="B.Sc,">B.Sc,</option>
+										<option value="B.A,">B.A,</option>
+										<option value="	B.Com,">B.Com,</option>
+										<option value="	M.Sc,">M.Sc,</option>
+										<option value="	M.A,">M.A,</option>
+										<option value="	M.Com,">M.Com,</option>
+										<option value="	Inter,">Inter,</option>
+										<option value="	Vidwan,">Vidwan,</option>
+										<option value="	PDC,">PDC,</option>
+										<option value="	( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</option></select></div>
+
+										
+									</td>
+								
+								<td width="30%"><div class="vcontainer">
+										<label for="DDo_Qualification"style="color:BLUE">DDo Qualification </label>
+										<select name="Professional_Qualification1" id="Professional_Qualification1" style="width:200px" onchange="fillForm(event,this)">
+										<option value="" selected disabled hidden>Professional</option>
+										<option value="T.T.C,">T.T.C,</option>
+										<option value="D.Ed,">D.Ed,</option>
+										<option value="	B.Ed,">B.Ed,</option>
+										<option value="	B.P.Ed,">B.P.Ed,</option>
+										<option value="	T.P.T,">T.P.T,</option>
+										<option value="	H.P.T,">H.P.T,</option>
+										<option value="	M.Ed,">M.Ed,</option>
+										<option value="	M.P.Ed,">M.P.Ed,</option>
+										<option value="	(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</option></select></div>
+									</td>
+								
+								<td width="30%"><div class="vcontainer">
+										<label for="DDo_Desgnation"  style="color:BLUE">DDo Designation </label>
+										<select name="DDo_Desgnation" id="DDo_Desgnation" oninput="fillForm(event,this)">
+										<option value="" selected disabled hidden>Choose designation</option>
+										<option value="	Gazetted HeadMaster Gr-II">Gazetted HeadMaster Gr-II</option>
+										<option value="	Gazetted HeadMistressGr-II">Gazetted HeadMistress Gr-II</option>
+										<option value="	Complex HeadMaster">Complex HeadMaster</option>
+										<option value="	Complex HeadMistress">Complex HeadMistress</option>
+										<option value="	Mandal Educational Officer">Mandal Educational Officer</option>
+										<option value="	Dy.Educational Officer">Dy.Educational Officer</option>
+										<option value="	HeadMaster">HeadMaster</option>
+										<option value="	HeadMistress">HeadMistress</option>
+										<option value="	District Educational Officer">District Educational Officer</option>
+									</select>
+										</div></td>
+							</tr>		
+							
+						</table>
+						</fieldset>
+						<fieldset>
+						<legend Align="center"style="color:RED">Teacher Details</legend>
+							<table>
+							
+							<tr>
+								
+								<td width="33%">
+									<div class="vcontainer">
+										<label for="teacher_Name"style="color:BLUE">Teacher Name </label>
+										<input type="text" id="teacher_Name" name="teacher_Name" size="25" maxlength="15" oninput="fillForm(event,this)"></input>
+										</div></td>
+								
+								<td width="33%"><label for="School_Name"style="color:BLUE">Place of Working &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input type="text" id="School_Name" name="School_Name" size="25" maxlength="25" oninput="fillForm(event,this)"></input>
+										</div>
+									</td>
+								
+								<td width="33%"><div class="vcontainer">
+										<label for="designation"style="color:BLUE">Present cadre </label>
+										<select name="designation" id="designation" style="width:200px" onchange="populate(this.id,'AAS_List')" oninput="fillForm(event,this)">
+										<option value="" selected disabled hidden>Choose designation</option>
+										<option value="H.M,Gr-II">H.M,Gr-II</option>
+										<option value="S.A(Tel)">S.A(Tel)</option>
+										<option value="S.A(Hin)">S.A(Hin)</option>
+										<option value="S.A(Eng)">S.A(Eng)</option>
+										<option value="S.A(Maths)">S.A(Maths)</option>
+										<option value="S.A(Phy.Sci)">S.A(Phy.Sci)</option>
+										<option value="S.A(Bio.Sci)">S.A(Bio.Sci)</option>
+										<option value="S.A(Social)">S.A(Social)</option>
+										<option value="S.A(Phy.Edn)">S.A(Phy.Edn)</option>
+										<option value="S.G.T">S.G.T</option>
+										<option value="L.P,Gr-II">L.P,Gr-II</option>
+										<option value="P.E.T">P.E.T</option>
+										<option value="J.Asst">J.Asst</option>
+										<option value="Office Subardinate">Office Subardinate</option>
+										<option value="Record Asst.">Record Asst.</option>
+										<option value="LFL.HM">LFL.HM</option>
+										</select>
+										</div></td>
+							</tr>
+							<tr>							
+							<td width="33%"><div class="vcontainer">
+										<label for="Acadamic Qualification"style="color:red">Acadamic&nbsp;Qualification </label>
+										<select name="Acadamic_Qualification" id="Acadamic_Qualification" style="width:200px" onchange="fillForm(event,this)">
+										<option value="" selected disabled hidden>Acadamic</option>
+										<option value="B.Sc,">B.Sc,</option>
+										<option value="B.A,">B.A,</option>
+										<option value="	B.Com,">B.Com,</option>
+										<option value="	M.Sc,">M.Sc,</option>
+										<option value="	M.A,">M.A,</option>
+										<option value="	M.Com,">M.Com,</option>
+										<option value="	Inter,">Inter,</option>
+										<option value="	Vidwan,">Vidwan,</option>
+										<option value="	PDC,">PDC,</option>
+										<option value="	( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</option></select></div></td>
+							
+							<td width="33%"><div class="vcontainer">
+										<label for="Professional Qualification"style="color:red">Professional&nbsp;Qualification</label>
+										<select name="Professional_Qualification" id="Professional_Qualification" style="width:200px" onchange="fillForm(event,this)">
+										<option value="" selected disabled hidden>Professional</option>
+										<option value="T.T.C,">T.T.C,</option>
+										<option value="D.Ed,">D.Ed,</option>
+										<option value="	B.Ed,">B.Ed,</option>
+										<option value="	B.P.Ed,">B.P.Ed,</option>
+										<option value="	T.P.T,">T.P.T,</option>
+										<option value="	H.P.T,">H.P.T,</option>
+										<option value="	M.Ed,">M.Ed,</option>
+										<option value="	M.P.Ed,">M.P.Ed,</option>
+										<option value="	(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</option></select></div>								
+								</td>
+							
+							<td width="33%"><div class="vcontainer">
+										<label for="Departmental test"style="color:red">Departmental test</label>
+										<select name="Departmental_test" id="Departmental_test" style="width:200px" onchange="fillForm(event,this)">
+										<option value="" selected disabled hidden>Departmental test</option>
+										<option value="Yes,">Yes,</option>
+										<option value="No,">No,</option></select></div></td>	
+							
+							</tr>
+							<tr>
+								
+								<td width="33%"><hr color="#ffff66" size="2"></td>
+								<td width="33%"><hr color="#ffff66" size="2"></td>
+								<td width="33%"><hr color="#ffff66" size="2"></td>
+							</tr>				
+							<tr>
+								
+								<td width="33%"><div class="vcontainer">
+										<label for="teacher_Name"style="color:BLUE">No.of&nbsp;days&nbsp;EOL/Suspenssion </label>
+										<input type="text" id="EOL" name="EOL" size="14" maxlength="3" value="000" style="width:190px" onchange="promotionDate(event,this)" oninput="fillForm(event,this)"></input>
+										</div>
+									</td>
+								
+								<td width="33%">									
+										<div class="vcontainer">
+										<label for="Pramotion Period"style="color:BLUE"> Promotion Period (Years)</label>
+										<select type="number" id="Promotion_Period" name="Promotion_Period" style="width:200px" onchange="promotionDate(event,this)" oninput="fillForm(event,this)">
+										<option value="" selected disabled hidden>Chose Promotion</option>
+										<option value="6">6</option>
+										<option value="12">12</option>
+										<option value="18">18</option>
+										<option value="24">24</option>
+									</div>
+
+
+									</td>
+								
+								<td width="33%"><div >
+										<label for="DOJ in present cadre" style="color:BLUE"> DOJ in Present Cadre</label>
+ 										<input width="10%" type="date" id="DOJ_in_present_cadre" name="DOJ_in_present_cadre" min="1990-01-01" max="2019-01-01" style="width:195px" onchange="promotionDate(event,this)"   oninput="fillForm(event,this)">
+									</div></td>
+							</tr>
+							<tr>
+								
+								<td width="33%"><div class="vcontainer">
+										<label for="scale_of_pay"style="color:red">Present Scale Of Pay</label>
+										<select name="Present_scale_of_pay" id="Present_scale_of_pay" style="width:200px" onchange="fillForm(event,this)">
+										  <option value="" selected disabled hidden>Choose Pay Scale</option>
+<option value="	13000-40270	">	13000-40270	</option><option value="	13390-41380	">	13390-41380	</option><option value="	13780-42490	">	13780-42490	</option>
+<option value="	14600-44870	">	14600-44870	</option><option value="	15030-46060	">	15030-46060	</option><option value="	15460-47330	">	15460-47330	</option>
+<option value="	16400-49870	">	16400-49870	</option><option value="	17890-53950	">	17890-53950	</option><option value="	18400-55410	">	18400-55410	</option>
+<option value="	19500-58330	">	19500-58330	</option><option value="	21230-63010	">	21230-63010	</option><option value="	22460-66330	">	22460-66330	</option>
+<option value="	23100-67990	">	23100-67990	</option><option value="	24440-71510	">	24440-71510	</option><option value="	25140-73270	">	25140-73270	</option>
+<option value="	26600-77030	">	26600-77030	</option><option value="	28940-78910	">	28940-78910	</option><option value="	29760-80930	">	29760-80930	</option>
+<option value="	31460-84970	">	31460-84970	</option><option value="	35120-87130	">	35120-87130	</option><option value="	37100-91450	">	37100-91450	</option>
+<option value="	40270-93780	">	40270-93780	</option><option value="	42490-96110	">	42490-96110	</option><option value="	46060-98440	">	46060-98440	</option>
+<option value="	49870-100770">	49870-100770</option><option value="	52590-103290">	52590-103290</option><option value="	56870-105810">	56870-105810</option>
+<option value="	61450-105810">	61450-105810</option><option value="	66330-108330">	66330-108330</option><option value="	73270-108330">	73270-108330</option>
+<option value="	80930-110850">	80930-110850</option><option value="	87130-110850">	87130-110850</option>
+										</select>
+										</div>
+									</td>
+								
+								
+								<td width="33%"><div class="vcontainer">
+										<label for="Present Basic Pay"style="color:red">Present Basic Pay</label>
+										<select name="Present_basic_pay" id="Present_basic_pay" style="width:200px" onchange="fillForm(event,this)">
+										  <option value="" selected disabled hidden>Choose Basic Pay</option>
+<option value="	13000	">	13000	</option><option value="	13390	">	13390	</option><option value="	13780	">	13780	</option>
+<option value="	14170	">	14170	</option><option value="	14600	">	14600	</option><option value="	15030	">	15030	</option>
+<option value="	15460	">	15460	</option><option value="	15930	">	15930	</option><option value="	16400	">	16400	</option>
+<option value="	16870	">	16870	</option><option value="	17380	">	17380	</option><option value="	17890	">	17890	</option>
+<option value="	18400	">	18400	</option><option value="	18950	">	18950	</option><option value="	19500	">	19500	</option>
+<option value="	20050	">	20050	</option><option value="	20640	">	20640	</option><option value="	21230	">	21230	</option>
+<option value="	21820	">	21820	</option><option value="	22460	">	22460	</option><option value="	23100	">	23100	</option>
+<option value="	23740	">	23740	</option><option value="	24440	">	24440	</option><option value="	25140	">	25140	</option>
+<option value="	25840	">	25840	</option><option value="	26600	">	26600	</option><option value="	27360	">	27360	</option>
+<option value="	28120	">	28120	</option><option value="	28940	">	28940	</option><option value="	29760	">	29760	</option>
+<option value="	30580	">	30580	</option><option value="	31460	">	31460	</option><option value="	32340	">	32340	</option>
+<option value="	33220	">	33220	</option><option value="	34170	">	34170	</option><option value="	35120	">	35120	</option>
+<option value="	36070	">	36070	</option><option value="	37100	">	37100	</option><option value="	38130	">	38130	</option>
+<option value="	39160	">	39160	</option><option value="	40270	">	40270	</option><option value="	41380	">	41380	</option>
+<option value="	42490	">	42490	</option><option value="	43680	">	43680	</option><option value="	44870	">	44870	</option>
+<option value="	46060	">	46060	</option><option value="	47330	">	47330	</option><option value="	48600	">	48600	</option>
+<option value="	49870	">	49870	</option><option value="	51230	">	51230	</option><option value="	52590	">	52590	</option>
+<option value="	53950	">	53950	</option><option value="	55410	">	55410	</option><option value="	56870	">	56870	</option>
+<option value="	58330	">	58330	</option><option value="	59890	">	59890	</option><option value="	61450	">	61450	</option>
+<option value="	63010	">	63010	</option><option value="	64670	">	64670	</option><option value="	66330	">	66330	</option>
+<option value="	67990	">	67990	</option><option value="	69750	">	69750	</option><option value="	71510	">	71510	</option>
+<option value="	73270	">	73270	</option><option value="	75150	">	75150	</option><option value="	77030	">	77030	</option>
+<option value="	78910	">	78910	</option><option value="	80930	">	80930	</option><option value="	82950	">	82950	</option>
+<option value="	84970	">	84970	</option><option value="	87130	">	87130	</option><option value="	89290	">	89290	</option>
+<option value="	91450	">	91450	</option><option value="	93780	">	93780	</option><option value="	96110	">	96110	</option>
+<option value="	98440	">	98440	</option><option value="	100770	">	100770	</option><option value="	103290	">	103290	</option>
+<option value="	105810	">	105810	</option><option value="	108330	">	108330	</option><option value="	110850	">	110850	</option>
+										</select>
+									</div></td>
+									</td>
+								
+								
+								<td width="33%">
+										<div class="vcontainer">
+										<label for="Pramotion eligible"style="color:red">Eligible Pramotion</label>
+										<select name="AAS_List" id="AAS_List" style="width:200px" onchange="fillForm(event,this)"></select>	</div>
+									</td>
+							</tr>
+							<tr>
+								
+								<td width="33%"><hr color="#ffff66" size="2"></td>
+								<td width="33%"><hr color="#ffff66" size="2"></td>
+								<td width="33%"><hr color="#ffff66" size="2"></td>
+							</tr>
+							
+							<tr>								
+											
+								<td width="33%"><div class="vcontainer">
+										<label for="basic_payafter promotion"style="color:BLUE"> BasicPay&nbsp;after&nbsp;promotion</label>
+										<select name="Future_basic_pay" id="Future_basic_pay" style="width:200px" onchange="fillForm(event,this)">
+										  <option value="" selected disabled hidden>Choose Basic Pay</option>
+<option value="	13000	">	13000	</option><option value="	13390	">	13390	</option><option value="	13780	">	13780	</option>
+<option value="	14170	">	14170	</option><option value="	14600	">	14600	</option><option value="	15030	">	15030	</option>
+<option value="	15460	">	15460	</option><option value="	15930	">	15930	</option><option value="	16400	">	16400	</option>
+<option value="	16870	">	16870	</option><option value="	17380	">	17380	</option><option value="	17890	">	17890	</option>
+<option value="	18400	">	18400	</option><option value="	18950	">	18950	</option><option value="	19500	">	19500	</option>
+<option value="	20050	">	20050	</option><option value="	20640	">	20640	</option><option value="	21230	">	21230	</option>
+<option value="	21820	">	21820	</option><option value="	22460	">	22460	</option><option value="	23100	">	23100	</option>
+<option value="	23740	">	23740	</option><option value="	24440	">	24440	</option><option value="	25140	">	25140	</option>
+<option value="	25840	">	25840	</option><option value="	26600	">	26600	</option><option value="	27360	">	27360	</option>
+<option value="	28120	">	28120	</option><option value="	28940	">	28940	</option><option value="	29760	">	29760	</option>
+<option value="	30580	">	30580	</option><option value="	31460	">	31460	</option><option value="	32340	">	32340	</option>
+<option value="	33220	">	33220	</option><option value="	34170	">	34170	</option><option value="	35120	">	35120	</option>
+<option value="	36070	">	36070	</option><option value="	37100	">	37100	</option><option value="	38130	">	38130	</option>
+<option value="	39160	">	39160	</option><option value="	40270	">	40270	</option><option value="	41380	">	41380	</option>
+<option value="	42490	">	42490	</option><option value="	43680	">	43680	</option><option value="	44870	">	44870	</option>
+<option value="	46060	">	46060	</option><option value="	47330	">	47330	</option><option value="	48600	">	48600	</option>
+<option value="	49870	">	49870	</option><option value="	51230	">	51230	</option><option value="	52590	">	52590	</option>
+<option value="	53950	">	53950	</option><option value="	55410	">	55410	</option><option value="	56870	">	56870	</option>
+<option value="	58330	">	58330	</option><option value="	59890	">	59890	</option><option value="	61450	">	61450	</option>
+<option value="	63010	">	63010	</option><option value="	64670	">	64670	</option><option value="	66330	">	66330	</option>
+<option value="	67990	">	67990	</option><option value="	69750	">	69750	</option><option value="	71510	">	71510	</option>
+<option value="	73270	">	73270	</option><option value="	75150	">	75150	</option><option value="	77030	">	77030	</option>
+<option value="	78910	">	78910	</option><option value="	80930	">	80930	</option><option value="	82950	">	82950	</option>
+<option value="	84970	">	84970	</option><option value="	87130	">	87130	</option><option value="	89290	">	89290	</option>
+<option value="	91450	">	91450	</option><option value="	93780	">	93780	</option><option value="	96110	">	96110	</option>
+<option value="	98440	">	98440	</option><option value="	100770	">	100770	</option><option value="	103290	">	103290	</option>
+<option value="	105810	">	105810	</option><option value="	108330	">	108330	</option><option value="	110850	">	110850	</option>
+										</select></div></td>
+
+							<td width="33%"><div ><label for="Date of Next Increment" style="color:BLUE"> Date of Next Increment</label>
+ 										<input width="10%" type="text" id="Next_Increment" name="Next_Increment" maxlength="10" placeholder="DD/MM/YYYY" style="width:195px" onchange="fillForm(event,this)" oninput="fillForm(event,this)">
+									</div></td>												
+								<td width="33%"><div id="validationMessageContainer" style="display:none;color:red;" ></div></td>
+							</tr>
+							<tr>
+								
+								<td width="33%"></td>
+								<td width="33%"></td>
+								<td width="33%"></td>
+							</tr>							
+						</table>
+
+						
+						
+						</fieldset>
+						<table>
+							<tr>
+								
+								<td width="33%"><a style="color:green" href="https://forms.gle/oZugqHbyQj9Qa3cP9"target="_blank">**Your Suggetions**</a></td>
+								
+								<td width="33%">&nbsp;</td>
+								<td width="33%">&nbsp;</td>
+							</tr>
+							<tr>
+								
+								<td width="33%">&emsp;&emsp;&emsp;&emsp;<input type="button" value="PrintPreview" style="background-color:red;color:yellow;width:90px;
+height:30px;"; onclick="PrintPreview();" /></td>
+								<td width="33%">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<INPUT type="reset" onClick="history.go(0)" VALUE="Refresh" style="background-color:red;color:yellow;height:30px;";></input> </td>
+								<td width="33%">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="button" value="PRINT" style="background-color:red;color:yellow;width:60px;
+height:30px;"; onclick="printForm();" /></td>
+								
+							</tr>
+						</table>
+					</form>
+				</div>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="container" style="border: 2px solid; width: 800px; padding: 5px;">
+					
+					<form name="previewForm"><br>
+					
+						<h3 Align=center>PROCEEDINGS OF THE: <div name="DDo_Desgnation_div" id="DDo_Desgnation_div_1" style="display:inline;font-weight: bold;"></div>,<div name="DDO_Office_div" id="DDO_Office_div_1" style="display:inline;font-weight: bold;"></div></h3>
+						&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;Mandal: <div name="School_Mandal_div" id="School_Mandal_div_1" style="display:inline;font-weight: bold;"></div>.</br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;Present:<div name="DDO_name_div" id="DDO_name_div_1" style="display:inline;font-weight: bold;"></div>,<div name="Acadamic_Qualification1_div" id="Acadamic_Qualification1_div_1" style="display:inline;font-weight: bold;"></div>,<div name="Professional_Qualification1_div" id="Professional_Qualification1_div_1" style="display:inline;font-weight: bold;"></div>. </br>
+						 &emsp;&emsp;<b>Pro.Rc.No:..........</b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Date:..........</b><br>
+						<br> &emsp; &emsp;<b>Sub:</b>&emsp;School Education-Automatic Advancement Scheme in RPS -2015 -Appointment of  Sri/Srmt/Kumari.<div name="teacher_Name_div" id="teacher_Name_div_1" style="display:inline;font-weight: bold;"></div>,<div name="designation_div" id="designation_div_1" style="display:inline;font-weight: bold;"></div> ,<div name="School_Name_div" id="School_Name_div_2" style="display:inline;font-weight: bold;"></div> , into <div name="AAS_List_div" id="AAS_List_div_1" style="display:inline;font-weight: bold;"></div> on completion of  <div name="Promotion_Period_div" id="Promotion_Period_div_1" style="display:inline;font-weight: bold;"></div> Years Service in the cadre of <div name="designation_div" id="designation_div_1" style="display:inline;font-weight: bold;"></div>- Orders Issued.</br>
+						<br>
+						&emsp; &emsp; <b>Ref:</b>&emsp;1).G.O.Ms. No . 38 Finance  (HRM.IV).,Dt. 15.04.2015</br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;2).G.O.Ms. No . 25 Finance  (HRM.IV).,Dt. 18.03.2015</br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;3)G.O.MS NO.40. DATED:7.5.2002</br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;4).Memo no:034408/248/PC-II/2011, Date:04-02-2012</br>
+						&emsp; &emsp;&emsp;&emsp;&emsp;5) Application of the  individual  </br>
+						&emsp;&emsp;<b>ORDER:</b><br>
+						<br>&emsp;&emsp;In accordance with the G.O. 1st to 5th read above Sri/Srmt/Kumari.<div name="teacher_Name_div" id="teacher_Name_div_1" style="display:inline;"></div>,<div name="designation_div" id="designation_div_1" style="display:inline;"></div> ,<div name="School_Name_div" id="School_Name_div_2" style="display:inline;"></div> ,  on completion of <div name="Promotion_Period_div" id="Promotion_Period_div_1" style="display:inline;font-weight: bold;"></div> Years Service  is hereby appointed into Special Grade Post Scale    in Atomatic Advancement Scheme With  effect  from <div name="Promotion_start_date_div" id="Promotion_start_date_div_1" style="display:inline;font-weight: bold;"></div> , in the time scale of  Pay<div name="Future_scale_of_pay_div" id="Future_scale_of_pay_div_1" style="display:inline;font-weight: bold;"></div> With Pay is fixed at Rs : <div name="AAS_List_div" id="AAS_List_div_1" style="display:inline;font-weight: bold;"></div> in <div name="designation_div" id="designation_div_1" style="display:inline;font-weight: bold;"></div> cadre,as shown below Annexure.</br>
+
+						<table id="annexureTableId" class="tableBorder"  rules="all"style="width:100%; border: 1px solid black;border-collapse: collapse;">
+							<caption>Annexure</caption>
+						<tr>
+							   <td width="6%">1</td>
+							   <td width="55%">Name & Present  post </td>
+							   <td><div name="teacher_Name_div" id="teacher_Name_div_1" style="display:inline;font-weight: bold;"></div>,<div name="designation_div" id="designation_div_1" style="display:inline;"></div></td>
+						</tr>
+						<tr>
+							    <td>2</td>
+							   <td>Qualifications</td>
+							   <td><div name="Acadamic_Qualification_div" id="Acadamic_Qualification_div_1" style="display:inline;"></div>,<div name="Professional_Qualification_div" id="Professional_Qualification_div_1" style="display:inline;"></td>
+						</tr>
+						<tr>
+							   <td>3</td>
+							   <td>Whether Departmental Tests Passed</td>
+							   <td><div name="Departmental_test_div" id="Departmental_test_div_1" style="display:inline;"></div></td>
+						</tr>
+						<tr>
+							    <td>4</td>
+							   <td>Date of  Joining  in the Present  post(yyyy/mm/dd)</td>
+							   <td><div name="DOJ_in_present_cadre_div" id="DOJ_in_present_cadre_div_1" style="display:inline;"></div></td>
+						</tr>
+						<tr>
+							   <td>5</td>
+							   <td>No. of Days E.O.L Availed During in the Present Post</td>
+							   <td><div name="EOL_div" id="EOL_div_1"  style="display:inline;"></div></td>
+						</tr>
+						<tr>
+							    <td>6</td>
+							   <td>Date of  Completion of <div name="Promotion_Period_div" id="Promotion_Period_div_1" style="display:inline;font-weight: bold;"></div> Years service including suspension period/unauthorized leaves in the Present Post </td>
+							   <td><div name="Promotion_date_div" id="Promotion_date_div_1" style="display:inline;font-weight: bold;"></div></td>
+						</tr>
+						<tr>
+							   <td>7</td>
+							   <td>Date of Appointment in the <div name="AAS_List_div" id="AAS_List_div_1" style="display:inline;"></div> Post  </td>
+							   <td><div name="Promotion_start_date_div" id="Promotion_start_date_div_1" style="display:inline;"></div></td>
+						</tr>
+						<tr>
+							    <td>8</td>
+							   <td>Scale & Pay as on date of <div name="Promotion_date_div" id="Promotion_date_div_1" style="display:inline;"></div> </td>
+							   <td><div name="Present_scale_of_pay_div" id="Present_scale_of_pay_div_1" style="display:inline;"></div>/<div name="Present_basic_pay_div" id="Present_basic_pay_div_1" style="display:inline;;"></div></td>
+						</tr>
+						<tr>
+							   <td>9</td>
+							   <td>Scale &Pay fixed as on <div name="Promotion_start_date_div" id="Promotion_start_date_div_1" style="display:inline;"></div> in the Special Grade(<div name="Promotion_Period_div" id="Promotion_Period_div_1" style="display:inline;font-weight: bold;"></div>Years)  as per FR 22 a (1)</td>
+							   <td><div name="AAS_List_div" id="AAS_List_div_1" style="display:inline;"></div>/<div name="Future_basic_pay_div" id="Future_basic_pay_div_1" style="display:inline;"></div></td>
+						</tr>
+						<tr>
+							    <td>10</td>
+							   <td>Date of Next increment(dd/mm/yyyy):on  </td>
+							   <td><div name="Next_Increment_div"  id="Next_Increment_div_1"  style="display:inline;"></div></td>
+						</tr>
+						<tr>
+							    <td>11</td>
+							   <td>Monetary Benefit due from:</td>
+							   <td><div name="Promotion_start_date_div" id="Promotion_start_date_div_1" style="display:inline;"></td>
+						</tr>
+					  		
+						</table><br>
+						
+						&emsp;&emsp;Certified that necessary entries were made in the Service Register of the individual. The individual is informed that if any excess amount paid due to erroneous sanction noticed during the course of audit such amount shall be recovered in lump sum from his  pay bills without any prior notice.<br><br>
+												
+						 <h4 Align=RIGHT>Signature of the DDO &emsp;&emsp;&emsp;</h4> 
+							Copy to:</br> 
+							1)The individual concerned </br> 
+							2)Copy to the STO  </br>
+							3)Copy to the DEO </br>
+						
+						
+					</form>
+					<div style="position:fixed;bottom:0;height:auto;margin-top:40px;width:100%;text-align:center">For more Proceedings at www.examhalls.in</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+
+<body/>
+</html>
